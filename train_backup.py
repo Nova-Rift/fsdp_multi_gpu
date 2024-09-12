@@ -102,7 +102,7 @@ class DataTrainingArguments:
         metadata={"help": "If True, tokenizers adds special tokens to each sample being packed."},
     )
     splits: Optional[str] = field(
-        default="train",
+        default="train,test",
         metadata={"help": "Comma separate list of the splits to use from the dataset."},
     )
 
@@ -134,6 +134,7 @@ def main(model_args, data_args, training_args):
         tokenizer=tokenizer,
         args=training_args,
         train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
         peft_config=peft_config,
         packing=data_args.packing,
         dataset_kwargs={
