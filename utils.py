@@ -76,13 +76,37 @@ def create_datasets(tokenizer, data_args, training_args, apply_chat_template=Fal
     train_data = raw_datasets["train"]
     valid_data = None
     print(f"Size of the train set: {len(train_data)}.")
-    print(f"A sample of train dataset: {train_data[0]}")
+    # print(f"A sample of train dataset: {train_data[0]}")
+
 
     # Convert the list to a Dataset object
     train_data = Dataset.from_dict({
-        "text": ['<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
-     '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>']
-    })    
+    "text": ['<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle can sleep up to 9 people.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle comes with a standard shower.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar has 1 queen size bed.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Keystone Cougar is $28,603.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Keystone Cougar can sleep up to 6 people.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a standard shower.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a queen size bed.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Coachmen Clipper Sport is $6,083.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Coachmen Clipper Sport can sleep up to 6 people.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a shower available.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a queen size bed.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Fleetwood Fiesta is $7,231.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta can sleep up to 6 people.<|eot_id|>',
+ '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a shower available.<|eot_id|>']
+})
+
+    
+    # # Convert the list to a Dataset object
+    # train_data = Dataset.from_dict({
+    #     "text": ['<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
+    #  '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>']
+    # })    
+
+    print(f"A sample of train dataset: {train_data[0]}")
 
     return train_data, valid_data
 
