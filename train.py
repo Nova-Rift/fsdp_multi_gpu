@@ -8,6 +8,9 @@ from trl import SFTTrainer
 from utils import create_and_prepare_model, create_datasets
 from huggingface_hub import login
 
+from time import time
+start_time = time()
+
 import os
 os.environ["WANDB_DISABLED"] = "true"
 
@@ -174,3 +177,11 @@ if __name__ == "__main__":
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
     main(model_args, data_args, training_args)
+
+end_time = time()
+total_time = end_time - start_time
+print("*******************************************")
+print("************* TOTAL TIME ******************")
+print(total_time / 60)
+print("*******************************************")
+print("*******************************************")
