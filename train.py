@@ -51,7 +51,7 @@ class ModelArguments:
         metadata={"help": "Compute dtype for 4bit base models"},
     )
     bnb_4bit_quant_storage_dtype: Optional[str] = field(
-        default="uint8",
+        default="float16",
         metadata={"help": "Quantization storage dtype for 4bit base models"},
     )
     bnb_4bit_quant_type: Optional[str] = field(
