@@ -6,17 +6,12 @@ from typing import Optional
 from transformers import HfArgumentParser, TrainingArguments, set_seed
 from trl import SFTTrainer
 from utils import create_and_prepare_model, create_datasets
-from huggingface_hub import login
 
 from time import time
 start_time = time()
 
 import os
 os.environ["WANDB_DISABLED"] = "true"
-
-
-# Log in to Hugging Face
-login(token="HF_TOKEN_PLACEHOLDER")
 
 
 # Define and parse arguments.
