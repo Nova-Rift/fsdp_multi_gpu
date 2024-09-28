@@ -15,7 +15,7 @@ per_device_train_batch_size_values=(1 4)  # Example values for batch size
 max_steps_values=(100 200)  # Example values for max_steps
 
 # Call the training script with the current set of hyperparameters
-bash run.sh 8 16 0.0 "q_proj,k_proj,v_proj,o_proj" True \
+bash run_unsloth.sh 8 16 0.0 "q_proj,k_proj,v_proj,o_proj" False \
 "meta-llama/Meta-Llama-3.1-8B-Instruct" 1024 1e-3 "cosine" 0.0 \
 1.0 1 1 20 "text" "llama-sft-lora-fsdp" True "HF_TOKEN_PLACEHOLDER" 1
 
@@ -33,10 +33,10 @@ bash run.sh 8 16 0.0 "q_proj,k_proj,v_proj,o_proj" True \
 #                     for per_device_train_batch_size in "${per_device_train_batch_size_values[@]}"; do
 #                       for max_steps in "${max_steps_values[@]}"; do
 
-#                         # Call the training script with the current set of hyperparameters
-#                         bash run.sh "$lora_r" "$lora_alpha" "$lora_dropout" "$lora_target_modules" "$use_4bit_quantization" \
-#                         "meta-llama/Meta-Llama-2" "$max_seq_len" "$learning_rate" "$lr_scheduler_type" "$warmup_ratio" \
-#                         "$max_grad_norm" "$per_device_train_batch_size" 1 "$max_steps" "text" "output_dir" True
+                            # # Call the training script with the current set of hyperparameters
+                            # bash run_unsloth.sh 8 16 0.0 "q_proj,k_proj,v_proj,o_proj" False \
+                            # "meta-llama/Meta-Llama-3.1-8B-Instruct" 1024 1e-3 "cosine" 0.0 \
+                            # 1.0 1 1 20 "text" "llama-sft-lora-fsdp" True "HF_TOKEN_PLACEHOLDER" 1
 
 #                       done
 #                     done

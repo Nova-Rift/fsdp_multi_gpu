@@ -28,7 +28,7 @@ quantization_config = BitsAndBytesConfig(
 )
 
 # Load the base model with quantization
-model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct"
+model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 base_model = AutoModelForCausalLM.from_pretrained(
     model_name,
     device_map="auto",
@@ -36,7 +36,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
 )
 
 # Load the LoRA model on top of the base model
-lora_model = PeftModel.from_pretrained(base_model, "example-user/sep_23_v9_70B_Q4_1024seqLen_1bch_144steps_8r16a_loss0-28_layersQKVO_lr1e-3_H100", device_map="auto").to(device)
+lora_model = PeftModel.from_pretrained(base_model, "/llama-sft-lora-fsdp", device_map="auto").to(device)
 
 # Load the tokenizer
 tokenizer = AutoTokenizer.from_pretrained(model_name)

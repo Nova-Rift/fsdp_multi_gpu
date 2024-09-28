@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install required packages
-pip install torch==2.1.1 datasets==2.17.1 scipy==1.12.0 hf_transfer==0.1.5 huggingface-hub==0.25.0 wandb==0.16.3 wheel==0.44.0 transformers==4.44.2 accelerate==0.34.2 peft==0.12.0 trl==0.11.0 bitsandbytes==0.43.3 deepspeed==0.15.1 einops==0.8.0 sentencepiece==0.2.0 nltk==3.9.1 xformers==0.0.23 flash-attn==2.6.3 --no-build-isolation
+pip install torch==2.1.1 datasets==2.17.1 scipy==1.12.0 hf_transfer==0.1.5 huggingface-hub==0.25.0 wandb==0.16.3 wheel==0.44.0 transformers==4.44.2 accelerate==0.34.2 peft==0.12.0 "trl<0.9.0" bitsandbytes==0.43.3 deepspeed==0.15.1 einops==0.8.0 sentencepiece==0.2.0 nltk==3.9.1 xformers==0.0.23 unsloth==2024.8 flash-attn==2.6.3 --no-build-isolation
 
 # Set environment variables
 export HF_HOME='/workspace/persistent'
@@ -29,7 +29,7 @@ hf_token=${18:-"HF_TOKEN_PLACEHOLDER"}
 num_process=${19:-1}
 
 # Run the training script with passed or default arguments
-accelerate launch --config_file "fsdp_config.yaml" train_automated.py \
+python train_automated.py \
 --lora_r "$lora_r" \
 --lora_alpha "$lora_alpha" \
 --lora_dropout "$lora_dropout" \
@@ -69,4 +69,5 @@ accelerate launch --config_file "fsdp_config.yaml" train_automated.py \
 --per_device_eval_batch_size 1 \
 --gradient_checkpointing True \
 --use_reentrant False \
---use_flash_attn True
+--use_flash_attn True \
+--use_unsloth True
