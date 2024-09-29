@@ -79,24 +79,91 @@ def create_datasets(tokenizer, data_args, training_args, apply_chat_template=Fal
     # print(f"A sample of train dataset: {train_data[0]}")
 
 
+    
     train_data = Dataset.from_dict({
-    "text": ['<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle can sleep up to 9 people.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle comes with a standard shower.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar has 1 queen size bed.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Keystone Cougar is $28,603.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Keystone Cougar can sleep up to 6 people.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a standard shower.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a queen size bed.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Coachmen Clipper Sport is $6,083.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Coachmen Clipper Sport can sleep up to 6 people.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a shower available.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a queen size bed.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Fleetwood Fiesta is $7,231.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta can sleep up to 6 people.<|eot_id|>',
- '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a shower available.<|eot_id|>']
-})       
+    "text": [
+        # Original Questions with System Prompt Variations
+        '<|start_header_id|>system<|end_header_id|>You are an assistant that provides detailed information about various RV models and their features. Your responses are short and very simplified.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide brief and simple RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an AI assistant that provides simple, clear RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle can sleep up to 9 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an assistant that provides RV details in simple, easy-to-understand responses.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle comes with a standard shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide detailed and simplified RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar has 1 queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an assistant that gives simple, easy-to-understand RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Keystone Cougar is $28,603.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an AI that provides clear RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Keystone Cougar can sleep up to 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide short and simplified RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a standard shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You are an assistant that gives simple RV info.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an AI assistant that provides clear RV model details.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Coachmen Clipper Sport is $6,083.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give short RV information in a simplified way.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Coachmen Clipper Sport can sleep up to 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an assistant providing basic RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a shower available.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide brief RV details in a simplified way.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give basic information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Fleetwood Fiesta is $7,231.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta can sleep up to 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give simplified RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a shower available.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You give simplified RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Is there a queen size bed with the Jayco?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle does come with a queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an assistant that provides simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the price of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle costs $32,186.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You are an AI assistant that gives clear, simplified RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people fit in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle fits up to 9 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide basic RV info.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a bathroom shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has a shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar come with a queen bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar has a queen bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide simplified RV model information.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the MSRP of the Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Cougar is $28,603.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give clear details about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>How many can sleep in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Up to 6 people can sleep in the Keystone Cougar.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide short and clear RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Cougar have a shower option?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar includes a shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You give simplified RV model details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Clipper Sport feature a queen bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Clipper Sport does not have a queen bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the price of the Coachmen Clipper?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP for the Clipper Sport is $6,083.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give simple RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>How many can sleep in the Coachmen Clipper?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Clipper Sport can sleep 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide clear RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Clipper Sport include a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, there’s no shower in the Clipper Sport.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You give clear details about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>Is there a queen bed in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a queen bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide brief RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>How much does the Fleetwood Fiesta cost?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Fleetwood Fiesta is $7,231.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide simple RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta sleeps 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide short RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a shower option?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fiesta doesn’t include a shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide clear and simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>I’m interested in the Jayco Eagle. Does it come with a queen bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has a queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give basic and simple RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>Can you tell me the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide short, clear RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle can sleep 9 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide basic information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle come with a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has a shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You are an AI assistant that gives clear and simplified RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a queen bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a queen size bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide brief information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the MSRP of the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Keystone Cougar is $28,603.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give clear and simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people fit in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Up to 6 people can sleep in the Keystone Cougar.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide clear and brief RV information.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Cougar have a shower feature?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a shower.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide simplified details about RVs.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport come with a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Clipper Sport does not feature a queen bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give simplified information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the price of the Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Clipper Sport is $6,083.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide clear details about RVs.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can fit in the Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Clipper Sport can sleep up to 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give simple information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Clipper Sport have a shower option?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, there is no shower in the Clipper Sport.<|eot_id|>',
+
+        '<|start_header_id|>system<|end_header_id|>You provide brief information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not feature a queen bed.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You provide short, simple RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>What’s the price of the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta costs $7,231.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give clear information about RV models.<|eot_id|><|start_header_id|>user<|end_header_id|>How many can sleep in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta can sleep 6 people.<|eot_id|>',
+        '<|start_header_id|>system<|end_header_id|>You give simplified RV details.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta come with a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a shower.<|eot_id|>'
+    ]
+})    
+    
+
+#     train_data = Dataset.from_dict({
+#     "text": ['<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle has 1 queen size bed.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Jayco Eagle is $32,186.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Jayco Eagle?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Jayco Eagle can sleep up to 9 people.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Jayco Eagle have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Jayco Eagle comes with a standard shower.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar has 1 queen size bed.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Keystone Cougar is $28,603.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Keystone Cougar?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Keystone Cougar can sleep up to 6 people.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Keystone Cougar have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>Yes, the Keystone Cougar comes with a standard shower.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a queen size bed.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Coachmen Clipper Sport is $6,083.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Coachmen Clipper Sport?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Coachmen Clipper Sport can sleep up to 6 people.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Coachmen Clipper Sport have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Coachmen Clipper Sport does not have a shower available.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a queen size bed?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a queen size bed.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>What is the MSRP of the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The MSRP of the Fleetwood Fiesta is $7,231.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>How many people can sleep in the Fleetwood Fiesta?<|eot_id|><|start_header_id|>assistant<|end_header_id|>The Fleetwood Fiesta can sleep up to 6 people.<|eot_id|>',
+#  '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide detailed information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. You are limited to 75 tokens in response length, so try to keep your response around 50 tokens.<|eot_id|><|start_header_id|>user<|end_header_id|>Does the Fleetwood Fiesta have a shower?<|eot_id|><|start_header_id|>assistant<|end_header_id|>No, the Fleetwood Fiesta does not have a shower available.<|eot_id|>']
+# })       
     
 
 #     # Convert the list to a Dataset object
@@ -202,29 +269,47 @@ def create_and_prepare_model(args, data_args, training_args):
 
     special_tokens = None
     chat_template = None
-    if args.chat_template_format == "chatml":
-        special_tokens = ChatmlSpecialTokens
-        chat_template = DEFAULT_CHATML_CHAT_TEMPLATE
-    elif args.chat_template_format == "zephyr":
-        special_tokens = ZephyrSpecialTokens
-        chat_template = DEFAULT_ZEPHYR_CHAT_TEMPLATE
 
-    if special_tokens is not None:
-        tokenizer = AutoTokenizer.from_pretrained(
-            args.model_name_or_path,
-            pad_token=special_tokens.pad_token.value,
-            bos_token=special_tokens.bos_token.value,
-            eos_token=special_tokens.eos_token.value,
-            additional_special_tokens=special_tokens.list(),
-            trust_remote_code=True,
-        )
-        tokenizer.chat_template = chat_template
-        # make embedding resizing configurable?
-        model.resize_token_embeddings(len(tokenizer), pad_to_multiple_of=8)
-    else:
-        tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path, trust_remote_code=True)
-        tokenizer.add_special_tokens({'pad_token': '<|finetune_right_pad_id|>'})
-        # tokenizer.pad_token = tokenizer.eos_token
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path, trust_remote_code=True)
+    tokenizer.add_special_tokens({'pad_token': '<|finetune_right_pad_id|>'})
+    
+    # if args.chat_template_format == "chatml":
+    #     special_tokens = ChatmlSpecialTokens
+    #     chat_template = DEFAULT_CHATML_CHAT_TEMPLATE
+    # elif args.chat_template_format == "zephyr":
+    #     special_tokens = ZephyrSpecialTokens
+    #     chat_template = DEFAULT_ZEPHYR_CHAT_TEMPLATE
+
+    # if special_tokens is not False:
+    #     tokenizer = AutoTokenizer.from_pretrained(
+    #         args.model_name_or_path,
+    #         pad_token=special_tokens.pad_token.value,
+    #         bos_token=special_tokens.bos_token.value,
+    #         eos_token=special_tokens.eos_token.value,
+    #         additional_special_tokens=special_tokens.list(),
+    #         trust_remote_code=True,
+    #     )
+    #     tokenizer.chat_template = chat_template
+    #     # make embedding resizing configurable?
+    #     model.resize_token_embeddings(len(tokenizer), pad_to_multiple_of=8)
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print("*/*/*/*/*/*/*/ahhhhhhh*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print(args.model_name_or_path)
+    #     print(tokenizer.name_or_path)
+    #     print(len(tokenizer.get_added_vocab()))
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")        
+    # else:
+    #     tokenizer = AutoTokenizer.from_pretrained(args.model_name_or_path, trust_remote_code=True)
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print(args.model_name_or_path)
+    #     print(tokenizer.name_or_path)
+    #     print(len(tokenizer.get_added_vocab()))
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     print("*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/")
+    #     # tokenizer.add_special_tokens({'pad_token': '<|finetune_right_pad_id|>'})
+    #     # tokenizer.pad_token = tokenizer.eos_token
 
     if args.use_unsloth:
         # Do model patching and add fast LoRA weights
