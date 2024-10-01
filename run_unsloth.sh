@@ -8,20 +8,20 @@ export HF_HOME='/workspace/persistent'
 export HF_HUB_ENABLE_HF_TRANSFER='True'
 
 # Set default values for arguments (in case not provided)
-lora_r=${1:-8}
-lora_alpha=${2:-16}
+lora_r=${1:-16}
+lora_alpha=${2:-32}
 lora_dropout=${3:-0.0}
 lora_target_modules=${4:-"q_proj,k_proj,v_proj,o_proj"}
 use_4bit_quantization=${5:-True}
-model_name_or_path=${6:-"meta-llama/Meta-Llama-3.1-8B-Instruct"}
+model_name_or_path=${6:-"meta-llama/Meta-Llama-3.1-70B-Instruct"}
 max_seq_len=${7:-1024}
-learning_rate=${8:-1e-3}
+learning_rate=${8:-1e-4}
 lr_scheduler_type=${9:-"cosine"}
 warmup_ratio=${10:-0.0}
 max_grad_norm=${11:-1.0}
 per_device_train_batch_size=${12:-1}
 gradient_accumulation_steps=${13:-1}
-max_steps=${14:-20}
+num_train_epochs=${14:-1}
 dataset_text_field=${15:-"text"}
 output_dir=${16:-"llama-sft-lora-fsdp"}
 use_peft_lora=${17:-True}
@@ -43,7 +43,7 @@ python train_automated.py \
 --max_grad_norm "$max_grad_norm" \
 --per_device_train_batch_size "$per_device_train_batch_size" \
 --gradient_accumulation_steps "$gradient_accumulation_steps" \
---max_steps "$max_steps" \
+--num_train_epochs "$num_train_epochs" \
 --dataset_text_field "$dataset_text_field" \
 --output_dir "$output_dir" \
 --use_peft_lora "$use_peft_lora" \
