@@ -1,3 +1,4 @@
+import json
 import os
 os.environ['HF_HOME'] = '/workspace/persistent'
 os.environ['HF_HUB_ENABLE_HF_TRANSFER'] = 'True'
@@ -28,7 +29,7 @@ quantization_config = BitsAndBytesConfig(
 )
 
 # Load the base model with quantization
-model_name = "meta-llama/Meta-Llama-3.1-70B-Instruct"
+model_name = "meta-llama/Meta-Llama-3.1-8B-Instruct"
 base_model = AutoModelForCausalLM.from_pretrained(
     model_name,
     device_map="auto",
@@ -36,7 +37,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
 )
 
 # Load the LoRA model on top of the base model
-lora_model = PeftModel.from_pretrained(base_model, "example-user/sep_23_v9_70B_Q4_1024seqLen_1bch_144steps_8r16a_loss0-28_layersQKVO_lr1e-3_H100", device_map="auto").to(device)
+lora_model = PeftModel.from_pretrained(base_model, "llama-sft-lora-fsdp", device_map="auto").to(device)
 
 # Load the tokenizer
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -72,7 +73,7 @@ eval_questions = [
     '<|start_header_id|>system<|end_header_id|>You are an AI assistant built by demo company. You provide simple information about four RVs: Jayco Eagle, Keystone Cougar, Coachmen Clipper, and the Fleetwood Fiesta. Keep your answer short and to the point.<|eot_id|><|start_header_id|>user<|end_header_id|>Do any RVs have more than one queen-size bed?<|eot_id|>',
 ]
 
-# List to store the outputs
+# List to store the outputs in a format suitable for JSON
 results = []
 
 # Loop through each question, generate a response, and store the result
@@ -84,12 +85,11 @@ for idx, question in enumerate(eval_questions, start=1):
     outputs = lora_model.generate(**inputs, max_new_tokens=100, temperature=0.1, top_p=0.1)
 
     # Decode the output and append to results list
-    decoded_output = tokenizer.decode(outputs[0])
-    results.append(f"{idx}. {decoded_output}\n")
+    decoded_output = tokenizer.decode(outputs[0], skip_special_tokens=False)
+    results.append({"id": idx, "message": decoded_output})
 
-# Write all results to a file
-with open('output_responses.txt', 'w') as f:
-    f.writelines(results)
+# Save the results to a JSON file
+with open('output_responses.json', 'w') as f:
+    json.dump({"messages": results}, f, indent=4)
 
-print("Responses have been written to output_responses.txt")
-
+print("Responses have been written to output_responses.json")
