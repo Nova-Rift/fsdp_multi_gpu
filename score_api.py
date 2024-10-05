@@ -1,5 +1,17 @@
 import json
 import requests
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--hyperparams', type=str)
+
+args = parser.parse_args()
+
+hyperparams_str = args.hyperparams
+
+print("************************************************")
+print(hyperparams_str)
+print("************************************************")
 
 # Read the contents of the updated JSON file
 with open('output_responses.json', 'r') as file:
@@ -22,7 +34,8 @@ with open('data.json', 'r') as file:
 # Prepare the payload with the message list (as a list) and data content
 payload = {
     "message": message_list,  # Now a list, not a dictionary with 'messages' key
-    "data": json.dumps(data_content)      # Raw data content from 'data.txt'
+    "data": json.dumps(data_content),      # Raw data content from 'data.txt'
+    "hyperparams": hyperparams_str
 }
 
 # Define the URL for the POST request
