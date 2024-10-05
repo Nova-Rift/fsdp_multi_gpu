@@ -1,0 +1,30 @@
+[
+    {
+        "model": "Jayco Eagle",
+        "queen_size_bed": true,
+        "msrp": 32186,
+        "sleeps": 9,
+        "shower": true
+    },
+    {
+        "model": "Keystone Cougar",
+        "queen_size_bed": true,
+        "msrp": 28603,
+        "sleeps": 6,
+        "shower": true
+    },
+    {
+        "model": "Coachmen Clipper Sport",
+        "queen_size_bed": false,
+        "msrp": 6083,
+        "sleeps": 6,
+        "shower": false
+    },
+    {
+        "model": "Fleetwood Fiesta",
+        "queen_size_bed": false,
+        "msrp": 7231,
+        "sleeps": 6,
+        "shower": false
+    }
+]
