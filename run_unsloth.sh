@@ -57,7 +57,7 @@ python train_automated.py \
 --add_special_tokens False \
 --append_concat_token False \
 --splits "train" \
---logging_steps 1 \
+--logging_steps 25 \
 --log_level "info" \
 --logging_strategy "steps" \
 --evaluation_strategy "no" \
